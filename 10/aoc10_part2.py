@@ -13,13 +13,17 @@ commands = iter(lines)
 
 while True:
 
+    t = tick % 40
+
+    if t == 0:
+        print()
+
+    if registerX in (t-1, t, t+1):
+        print('#', end='')
+    else:
+        print('.', end='')
+
     tick += 1
-
-    if tick % 20 == 0:
-        if tick in (20, 60, 100, 140, 180, 220):
-            SUM += tick * registerX
-        print(f'{tick} {registerX} sum {SUM}')
-
 
     if CPUbusy:
         registerX += registerTmp # value is increased after two cycles
@@ -38,5 +42,3 @@ while True:
 
     registerTmp = val
     CPUbusy = True
-
-print(SUM)
